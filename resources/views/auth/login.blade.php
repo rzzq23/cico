@@ -19,6 +19,17 @@
       <div class="form-container">
         <form method="POST" action="{{ route('login.post') }}">
           @csrf
+          
+          @if ($errors->any())
+              <div class="alert alert-danger">
+                  <ul>
+                      @foreach ($errors->all() as $error)
+                          <li>{{ $error }}</li>
+                      @endforeach
+                  </ul>
+              </div>
+          @endif
+          
           <label for="email">Username Atau Email</label>
           <input type="email" id="email" name="email" placeholder="example@gmail.com" class="input yellow" required />
   
@@ -30,7 +41,7 @@
   
           <button type="submit" class="btn white">Log In</button>
           <p class="forgot"><a href="forgot.html">Lupa Kata Sandi?</a></p>
-          <button class="btn yellow" onclick="redirectTo('signup.html')">Daftar</button>
+          <a href="{{ route('register') }}" class="btn yellow">Daftar</a>
   
           <div class="or-social">
             <p>atau daftar dengan</p>
@@ -45,5 +56,18 @@
     </div>
   
     <script src="{{ asset('assets/js/Script.js') }}"></script>
+    <script>
+        function togglePassword(id) {
+            var passwordField = document.getElementById(id);
+            var passwordIcon = document.querySelector('.toggle-password');
+            if (passwordField.type === "password") {
+                passwordField.type = "text";
+                passwordIcon.textContent = "🙈"; // Ubah icon jika password terbuka
+            } else {
+                passwordField.type = "password";
+                passwordIcon.textContent = "👁️"; // Kembalikan icon jika password tersembunyi
+            }
+        }
+    </script>
 </body>
 </html>

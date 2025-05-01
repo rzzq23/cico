@@ -6,11 +6,11 @@ use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Auth;
 
 class RegisterController extends Controller
 {
     public function showRegistrationForm()
-
     {
         return view('auth.register');
     }
@@ -24,15 +24,17 @@ class RegisterController extends Controller
             'password' => 'required|min:6|confirmed',
         ]);
 
-        // Simpan user
-        User::create([
+        // Simpan user baru
+        $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
         ]);
 
-        // Redirect ke login
-        return redirect('/login')->with('success', 'Registrasi berhasil. Silakan login.');
+        // Login otomatis setelah registrasi
+        Auth::login($user);
+
+        // Redirect ke dashboard
+        return redirect()->route('dashboard')->with('success', 'Registrasi berhasil, selamat datang!');
     }
 }
-
