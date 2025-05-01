@@ -1,0 +1,109 @@
+/* signup-style.css */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
+    font-family: 'Segoe UI', sans-serif;
+    background-color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: start;
+    padding: 30px 16px;
+    min-height: 100vh;
+  }
+  
+  .signup-container {
+    width: 100%;
+    max-width: 400px;
+    background-color: #000;
+    border-radius: 30px;
+    overflow: hidden;
+  }
+  
+  .top-section {
+    background-color: #FFD700;
+    text-align: center;
+    padding: 20px;
+  }
+  
+  .top-section h2 {
+    color: #000;
+    font-size: 22px;
+  }
+  
+  .form-section {
+    padding: 24px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+  
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+  
+  .form-group label {
+    color: #fff;
+    font-size: 14px;
+    font-weight: 600;
+  }
+  
+  .form-group input {
+    padding: 12px;
+    border-radius: 20px;
+    border: none;
+    font-size: 14px;
+    width: 100%;
+    background-color: #fff;
+  }
+  
+  .form-group.yellow input {
+    background-color: #FFD700;
+    color: #000;
+  }
+  
+  .form-group input::placeholder {
+    color: #999;
+  }
+  
+  .policy-text {
+    font-size: 12px;
+    color: #fff;
+    text-align: center;
+    margin-top: 6px;
+  }
+  
+  .policy-text a {
+    color: #FFD700;
+    text-decoration: none;
+  }
+  
+  .signup-btn {
+    margin-top: 10px;
+    background-color: #FFD700;
+    color: #000;
+    font-weight: bold;
+    border: none;
+    padding: 12px;
+    border-radius: 25px;
+    font-size: 16px;
+    cursor: pointer;
+  }
+  
+  .bottom-text {
+    font-size: 13px;
+    color: #ccc;
+    text-align: center;
+    margin-top: 14px;
+  }
+  
+  .bottom-text a {
+    color: #FFD700;
+    text-decoration: none;
+  }
+  
