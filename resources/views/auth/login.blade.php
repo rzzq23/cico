@@ -1,32 +1,30 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 <head>
-    <meta charset="UTF-8">
-    <title>Login</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Login</title>
     <link rel="stylesheet" href="{{ asset('assets/css/login.css') }}" />
-    @vite(['resources/sass/app.scss', 'resources/js/app.js'])
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    {{-- @vite(['resources/sass/app.scss', 'resources/js/app.js']) --}}
 </head>
 <body>
-
-  <body class="login-page">
-    <div class="container">
-      <div class="header yellow-bg">
+  <div class="login-container">
+    <div class="top-section">
         <h2>Selamat Datang Di</h2>
         <img src="{{ asset('assets/images/logo/Logo.png') }}" alt="CICO Logo" class="logo" />
       </div>
   
-      <div class="form-container">
+      <div class="form-section">
         <form method="POST" action="{{ route('login.post') }}">
           @csrf
-          
           @if ($errors->any())
               <div class="alert alert-danger">
-                  <ul>
+                  <p>
                       @foreach ($errors->all() as $error)
-                          <li>{{ $error }}</li>
+                          <p>{{ $error }}</p>
                       @endforeach
-                  </ul>
+                  </p>
               </div>
           @endif
           
@@ -36,26 +34,28 @@
           <label for="password">Kata Sandi</label>
           <div class="password-wrapper">
             <input type="password" id="password" name="password" placeholder="•••••••" class="input" required />
-            <span class="toggle-password" onclick="togglePassword('password')">👁️</span>
-          </div>
-  
-          <button type="submit" class="btn white">Log In</button>
-          <p class="forgot"><a href="forgot.html">Lupa Kata Sandi?</a></p>
-          <a href="{{ route('register') }}" class="btn yellow">Daftar</a>
-  
-          <div class="or-social">
-            <p>atau daftar dengan</p>
-            <div class="icons">
-              <img src="{{ asset('assets/facebook-icon.svg') }}" />
-              <img src="{{ asset('assets/google-icon.svg') }}" />
+            <span class="toggle-password" onclick="togglePassword('password')"><svg margin-top="-2px" width="26" height="11" viewBox="0 0 26 11" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M2.81442 1C8.31712 8.32781 17.113 8.55139 22.815 1.66714C22.9933 1.45438 23.1646 1.2308 23.3394 1M13.0752 6.66895V10M18.6303 5.20123L20.4447 8.42157M22.8115 1.66715L25.1364 3.83447M7.50955 5.20123L5.69512 8.42157M3.32484 1.66715L1 3.83447" stroke="#0E3E3E" stroke-width="1.63636" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg></span>
             </div>
-            <p class="account">Belum punya akun? <a href="{{ route('register') }}">Daftar</a></p>
-          </div>
-        </form>
+            <div class="button-group">
+              <button type="submit" class="login-btn">Log In</button>
+              <p class="forgot"><a href="forgot.html">Lupa Kata Sandi?</a></p>
+              <a href="{{ route('register') }}" class="signup-btn">Sign Up</a>
+            </div>
+            <div class="or-social">
+              <p>atau daftar dengan</p>
+              <div class="icons">
+                <img src="{{ asset('assets/images/icon/facebook.svg') }}" />
+                <img src="{{ asset('assets/images/icon/google.svg') }}" />
+              </div>
+              <p class="account">Belum punya akun? <a href="{{ route('register') }}">Daftar</a></p>
+            </div>
+          </form>
       </div>
     </div>
-  
-    <script src="{{ asset('assets/js/Script.js') }}"></script>
+  </div>
+  <script src="{{ asset('assets/js/Script.js') }}"></script>
     <script>
         function togglePassword(id) {
             var passwordField = document.getElementById(id);
@@ -65,7 +65,9 @@
                 passwordIcon.textContent = "🙈"; // Ubah icon jika password terbuka
             } else {
                 passwordField.type = "password";
-                passwordIcon.textContent = "👁️"; // Kembalikan icon jika password tersembunyi
+                passwordIcon.textContent = "<svg margin-top="-2px" width="26" height="11" viewBox="0 0 26 11" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M2.81442 1C8.31712 8.32781 17.113 8.55139 22.815 1.66714C22.9933 1.45438 23.1646 1.2308 23.3394 1M13.0752 6.66895V10M18.6303 5.20123L20.4447 8.42157M22.8115 1.66715L25.1364 3.83447M7.50955 5.20123L5.69512 8.42157M3.32484 1.66715L1 3.83447" stroke="#0E3E3E" stroke-width="1.63636" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>"; // Kembalikan icon jika password tersembunyi
             }
         }
     </script>

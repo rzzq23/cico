@@ -1,9 +1,10 @@
+
 body {
     margin: 0;
     padding: 0;
     max-width: 420px;
     margin: 0 auto;
-    font-family: Arial, sans-serif;
+    font-family: 'Poppins', Arial, sans-serif;
     display: flex;
     flex-direction: column;
     height: 100vh;
@@ -94,9 +95,11 @@ body {
     }
     nav {
       display: flex;
-      justify-content: space-around;
+      justify-content: space-evenly;
+      align-items: center;
       border-top: 1px solid #ccc;
       padding-top: 10px;
+      padding-bottom: 10px;
       position: fixed;
       bottom: 0;
       left: 50%;
@@ -210,9 +213,11 @@ body {
       padding: 20px;
       border-radius: 40px;
       border: 5px solid #EBBE25;
+      display: flex;
       align-items: center;
       justify-content: center;
       font-size: 8px;
+      margin: auto;
     }
     .category-grid {
       display: grid;
@@ -239,6 +244,13 @@ body {
     .content-scroll {
       overflow-y: auto;
       flex: 1;
+    
+      scrollbar-width: none; /* Firefox */
+      -ms-overflow-style: none;  /* IE & Edge */
+    }
+    
+    .content-scroll::-webkit-scrollbar {
+      display: none; /* Chrome, Safari, Opera */
     }
     .add-btn{
       background: white; 
@@ -271,6 +283,7 @@ body {
       display: flex;
       gap: 10px; /* jarak antar tombol */
       z-index: 10;
+      padding-bottom: 10px;
     }
     .add-expense, .add-income {
       background-color: white;
@@ -278,4 +291,56 @@ body {
       border-radius: 9999px;
       padding: 5px 20px;
       font-weight: bold;
+    }
+
+    .icon {
+      width: 55px;
+      height: 25px;
+    }
+
+    .iconav {
+      width: 35px;
+      height: 35px;
+      display: block;
+      margin: 0 auto;
+      align-items: center;
+    }
+
+    .profil {
+      height: 80vh;
+      background-color: #facc15;
+      border-radius: 40px 40px 0 0;
+      margin-top: -50px;
+    }
+
+    .foto-profil {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100px; /* atau tinggi sesuai kebutuhan */
+      margin-top: -50px;
+    }
+    
+    .foto-profil img {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+    }
+
+    .profil h1 {
+      margin: 0;
+      padding: 0;
+      text-align: center;
+    }
+
+    .profil {
+      padding: 0 1.5rem 0 1.5rem;
+    }
+    
+    .edit-profile {
+      margin-top: 20px;
+    }
+    
+    .IDuser {
+      text-align: center;
     }

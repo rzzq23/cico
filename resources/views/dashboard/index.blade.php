@@ -3,9 +3,11 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+  {{-- <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" /> --}}
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>Dashboard</title>
-  <link rel="stylesheet" href="{{ asset('assets/css/app.css') }}">
+  {{-- <link rel="stylesheet" href="{{ asset('assets/css/app.css') }}"> --}}
+  @vite(['resources/sass/style.scss', 'resources/js/app.js'])
 </head>
 <body>
   <header>
@@ -109,20 +111,45 @@
 
   <nav>
     <a href="{{ route('dashboard') }}" class="{{ request()->routeIs('dashboard') ? 'choose' : '' }}" aria-label="Home">
-      <img src="{{ asset('assets/images/icon/home.svg') }}" alt="Home">
+      <svg class="iconav">
+        <use xlink:href="{{ asset('assets/images/icons/icon.svg') }}#Home"></use>
+      </svg>
     </a>
     <a href="{{ route('statistik') }}" class="{{ request()->routeIs('statistik') ? 'choose' : '' }}" aria-label="Statistics">
-      <img src="{{ asset('assets/images/icon/analysis.svg') }}" alt="Statistics">
+      <svg class="iconav">
+        <use xlink:href="{{ asset('assets/images/icons/icon.svg') }}#Analysis"></use>
+      </svg>
     </a>
     <a href="{{ route('history') }}" class="{{ request()->routeIs('history') ? 'choose' : '' }}" aria-label="History">
-      <img src="{{ asset('assets/images/icon/Transactions.svg') }}" alt="History">
+      <svg class="iconav">
+        <use xlink:href="{{ asset('assets/images/icons/icon.svg') }}#Transactions"></use>
+      </svg>
     </a>
     <a href="{{ route('category') }}" class="{{ request()->routeIs('category') ? 'choose' : '' }}" aria-label="Category">
-      <img src="{{ asset('assets/images/icon/category.svg') }}" alt="Category">
+      <svg class="iconav">
+        <use xlink:href="{{ asset('assets/images/icons/icon.svg') }}#Category"></use>
+      </svg>
     </a>
     <a href="{{ route('profile') }}" class="{{ request()->routeIs('profile') ? 'choose' : '' }}" aria-label="User">
-      <img src="{{ asset('assets/images/icon/Profile.svg') }}" alt="User">
+      <svg class="iconav" viewBox="-3 0 35 35">
+        <use xlink:href="{{ asset('assets/images/icons/icon.svg') }}#Profile"></use>
+      </svg>
     </a>
   </nav>
+  <script>
+    // Mencegah zoom dengan Ctrl + Scroll
+    document.addEventListener('wheel', function(e) {
+      if (e.ctrlKey) {
+        e.preventDefault();
+      }
+    }, { passive: false });
+
+    // Mencegah zoom dengan Ctrl + + / -
+    document.addEventListener('keydown', function(e) {
+      if ((e.ctrlKey || e.metaKey) && (e.key === '+' || e.key === '-' || e.key === '=')) {
+        e.preventDefault();
+      }
+    });
+  </script>
 </body>
 </html>
