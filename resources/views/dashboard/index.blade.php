@@ -1,4 +1,20 @@
 {{-- resources/views/dashboard/index.blade.php --}}
+
+@php
+    function getIcon($category) {
+        switch (strtolower($category)) {
+            case 'salary': return asset('assets/images/icon/salary.svg');
+            case 'savings': return asset('assets/images/icon/saving.svg');
+            case 'food': return asset('assets/images/icon/food.svg');
+            case 'transport': return asset('assets/images/icon/transport.svg');
+            case 'groceries': return asset('assets/images/icon/groceries.svg');
+            case 'entertainment': return asset('assets/images/icon/entertainment.svg');
+            default: return asset('icons/default.svg');
+        }
+    }
+@endphp
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,6 +24,7 @@
   <title>Dashboard</title>
   {{-- <link rel="stylesheet" href="{{ asset('assets/css/app.css') }}"> --}}
   @vite(['resources/sass/style.scss', 'resources/js/app.js'])
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
   <header>
@@ -25,12 +42,12 @@
       <div style="text-align: center;">
           <div><img src="{{ asset('assets/images/icon/income.svg') }}" alt="Income" height="25" width="25"></div>
           <div>Total Income</div>
-          <div><strong>$4,000.00</strong></div>
+          <div><strong>Rp. {{ number_format($totalIncome, 2) }}</strong></div>
       </div>
       <div style="text-align: center;">
           <div><img src="{{ asset('assets/images/icon/expense.svg') }}" alt="expense" height="25" width="25"></div>
           <div>Total Expense</div>
-          <div><strong>$1,187.40</strong></div>
+          <div><strong>Rp. {{ number_format($totalExpense, 2) }}</strong></div>
       </div>
     </section>
 
@@ -54,59 +71,37 @@
         <button class="no-terpilih">Monthly</button>  
       </div>
 
+
+      @foreach ($grouped as $month => $transactions)
+      <h3>{{ $month }}</h3>
       <ul>
-        <li>
-          <div class="icon-circle"><img src="{{ asset('assets/images/icon/salary.svg') }}" alt="Salary"></div>
-          <div class="transaction-info">
-            <div>Salary</div>
-            <div>18:27 - April 30</div>
-          </div>
-          <div class="category">Monthly</div>
-          <div><strong>$4,000,00</strong></div>
-        </li>
-        <li>
-          <div class="icon-circle"><img src="{{ asset('assets/images/icon/groceries.svg') }}" height="25" width="20" alt="Groceries"></div>
-          <div class="transaction-info">
-            <div>Groceries</div>
-            <div>17:00 - April 24</div>
-          </div>
-          <div class="category">Pantry</div>
-          <div><strong>-$100,00</strong></div>
-        </li>
-        <li>
-          <div class="icon-circle"><img src="{{ asset('assets/images/icon/rent.svg') }}" alt="Rent" height="20" width="25"></div>
-          <div class="transaction-info">
-            <div>Rent</div>
-            <div>8:30 - April 15</div>
-          </div>
-          <div class="category">Rent</div>
-          <div><strong>-$674,40</strong></div>
-        </li>
-        <li>
-          <div class="icon-circle"><img src="{{ asset('assets/images/icon/transport.svg') }}" alt="Transport" height="25" width="25"></div>
-          <div class="transaction-info">
-            <div>Transport</div>
-            <div>5:30 - April 08</div>
-          </div>
-          <div class="category">Fuel</div>
-          <div><strong>-$4,13</strong></div>
-        </li>
-        <li>
-          <div class="icon-circle"><img src="{{ asset('assets/images/icon/food.svg') }}" alt="Food" height="25" width="20"></div>
-          <div class="transaction-info">
-            <div>Food</div>
-            <div>19:30 - March 31</div>
-          </div>
-          <div class="category">Dinner</div>
-          <div><strong>-$70,40</strong></div>
-        </li>
+          @foreach ($transactions as $transaction)
+              <li>
+                  <div class="icon-circle">
+                      <img src="{{ getIcon($transaction['category']) }}" alt="icon" width="18">
+                  </div>
+                  <div class="transaction-info">
+                      <div>{{ $transaction['title'] }}</div>
+                      <div>{{ \Carbon\Carbon::parse($transaction['date'])->format('H:i - F d') }}</div>
+                  </div>
+                  <div class="category">{{ $transaction['category'] }}</div>
+                  <div>
+                      <strong>
+                          {{ $transaction['type'] === 'income' ? '+' : '-' }}
+                          Rp. {{ number_format($transaction['amount'], 2) }}
+                      </strong>
+                  </div>
+              </li>
+          @endforeach
       </ul>
+  @endforeach
+
     </section>
   </div>
 
   <div class="add-expense-container">
-    <button class="add-income">Add Income</button>
-    <button class="add-expense">Add Expense</button>
+    <a href="{{ route('income.create') }}" class="add-income" style="text-decoration: none">Add Income</a>
+    <a href="{{ route('expense.create') }}" class="add-expense" style="text-decoration: none">Add Expense</a>    
   </div>
 
   <nav>
@@ -136,6 +131,7 @@
       </svg>
     </a>
   </nav>
+  
   <script>
     // Mencegah zoom dengan Ctrl + Scroll
     document.addEventListener('wheel', function(e) {

@@ -11,16 +11,15 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('income', function (Blueprint $table) {
-            $table->id('income_id');
+        Schema::create('accounts', function (Blueprint $table) {
+            $table->id('account_id'); // primary key
             $table->unsignedBigInteger('user_id'); // kolom user_id untuk relasi
-            $table->date('date');
-            $table->string('category', 50);
-            $table->decimal('amount', 15, 2);
-            $table->text('description');
+            $table->decimal('total_balance', 15, 2);
+            $table->decimal('total_expense', 15, 2);
+            $table->decimal('total_income', 15, 2);
             $table->timestamps();
 
-            // Foreign key constraint ke tabel users
+            // Membuat foreign key constraint ke tabel users
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
@@ -30,7 +29,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('income');
+        Schema::dropIfExists('accounts');
     }
 };
-

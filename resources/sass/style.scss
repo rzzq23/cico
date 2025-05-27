@@ -293,6 +293,19 @@ body {
       font-weight: bold;
     }
 
+    a.add-income, a.add-expense {
+      text-decoration: none;      
+      color: black;               
+    }
+
+    a.add-income:visited, a.add-expense:visited {
+      color: black;               
+    }
+
+    // a.add-income:hover, a.add-expense:hover {
+    //   color: darkgreen;           
+    // }
+
     .icon {
       width: 55px;
       height: 25px;
@@ -308,7 +321,7 @@ body {
 
     .profil {
       height: 80vh;
-      background-color: #facc15;
+      background-color: #FBE538;
       border-radius: 40px 40px 0 0;
       margin-top: -50px;
     }
@@ -344,3 +357,341 @@ body {
     .IDuser {
       text-align: center;
     }
+
+    .containerpr {
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: flex-start;
+      gap: 34px;
+  }
+
+  .containerep {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 34px;
+}
+  
+  .menu-button {
+      display: inline-flex;
+      align-items: center;
+      gap: 13px;
+      border: none;
+      background: transparent;
+      cursor: pointer;
+      padding: 0;
+      font-family: inherit;
+      width: 100%;
+  }
+  
+  .icon-wrapper {
+      width: 57px;
+      height: 53px;
+      position: relative;
+  }
+  
+  .icon-bg {
+      width: 57px;
+      height: 53px;
+      border-radius: 22px;
+      position: absolute;
+      left: 0;
+      top: 0;
+  }
+  
+  .edit-icon .icon-bg {
+      background: #6db6fe;
+  }
+  
+  .logout-icon .icon-bg {
+      background: #3299ff;
+  }
+  
+  .icon-shape {
+      position: absolute;
+      background: transparent;
+  }
+  
+  .shape-edit {
+      width: 22.48px;
+      height: 28.12px;
+      left: 14px;
+      top: 10px;
+      // outline: 2.22px #052224 solid;
+      outline-offset: -1.11px;
+  }
+  
+  .shape-logout {
+      width: 18px;
+      height: 26.98px;
+      left: 16px;
+      top: 10px;
+      // outline: 2.63px #052224 solid;
+      outline-offset: -1.32px;
+  }
+  
+  .label {
+      color: #093030;
+      font-size: 15px;
+      font-family: "Poppins", sans-serif;
+      font-weight: 500;
+      text-transform: capitalize;
+  }
+  
+  /* Overlay popup */
+  .popup-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.4); /* efek gelap */
+      display: none; /* disembunyikan default */
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+  }
+  
+  /* Popup dialog */
+  .logout-dialog {
+      width: 339px;
+      height: 300px;
+      position: relative;
+      font-family: "Poppins", sans-serif;
+  }
+  
+  .dialog-box {
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      background: white;
+      border-radius: 20px;
+      top: 0;
+      left: 0;
+  }
+  
+  .dialog-title {
+      position: absolute;
+      top: 42px;
+      left: 109px;
+      color: #0e3e3e;
+      font-size: 20px;
+      font-weight: 700;
+      text-transform: capitalize;
+      text-align: center;
+  }
+  
+  .dialog-message {
+      position: absolute;
+      top: 83px;
+      left: 30px;
+      color: #363130;
+      font-size: 17px;
+      font-family: "League Spartan", "Poppins", sans-serif;
+      font-weight: 400;
+      text-align: center;
+  }
+  
+  .btn-confirm {
+      position: absolute;
+      top: 145px;
+      left: 61px;
+      width: 218px;
+      height: 45px;
+      background: #fbe538;
+      border-radius: 30px;
+      border: none;
+      color: #093030;
+      font-size: 15px;
+      font-weight: 500;
+      text-transform: capitalize;
+      cursor: pointer;
+  }
+  
+  .btn-cancel {
+      position: absolute;
+      top: 201px;
+      left: 61px;
+      width: 218px;
+      height: 45px;
+      background: #fdf3a9;
+      border-radius: 30px;
+      border: none;
+      color: #0e3e3e;
+      font-size: 15px;
+      font-weight: 500;
+      text-transform: capitalize;
+      cursor: pointer;
+  }
+  
+  .profile-form {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    margin: 0 38px;
+    margin-top: 40px;
+    width: 80%;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-label {
+    font-size: 15px;
+    font-weight: 500;
+    color: #093030;
+    margin-bottom: 8px;
+    text-transform: capitalize;
+}
+
+.form-input {
+    height: 40px;
+    border: none;
+    border-radius: 10px;
+    background-color: #DFF7E2;
+    padding: 10px 20px;
+    font-size: 13px;
+    font-weight: 300;
+    color: #093030;
+}
+
+.update-button {
+    margin-top: 20px;
+    height: 36px;
+    background-color: #00D09E;
+    color: #093030;
+    border: none;
+    border-radius: 30px;
+    font-size: 15px;
+    font-weight: 500;
+    text-transform: capitalize;
+    cursor: pointer;
+}
+
+.form-container-add {
+  max-width: 340px;
+  margin: 0 auto;
+  // border: 1px solid #eee;
+  border-radius: 10px;
+  padding: 20px;
+  background-color: transparent;
+}
+
+/* Form Group */
+.form-group-add {
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+// ADD EXP
+/* General Form Input Style */
+.input-box {
+  width: 320px;
+  height: 41px;
+  background: #DFF7E2;
+  border-radius: 18px;
+  border: none;
+  padding: 10px 15px;
+  font-family: 'Poppins', sans-serif;
+  font-size: 15px;
+  color: #093030;
+  box-sizing: border-box;
+}
+
+/* Select Box Wrapper for Dropdown Icon */
+.select-wrapper {
+  position: relative;
+  display: inline-block;
+}
+
+.select-box {
+  appearance: none;
+  padding-right: 30px;
+}
+
+/* Dropdown Icon */
+.dropdown-icon {
+  position: absolute;
+  right: 40px;
+  top: 50%;
+  width: 9px;
+  height: 5px;
+  background: #00D09E;
+  transform: translateY(-50%) rotate(-90deg);
+  clip-path: polygon(0 0, 100% 50%, 0 100%);
+}
+
+/* Form Label Style */
+.form-label {
+  font-family: 'Poppins', sans-serif;
+  font-size: 15px;
+  font-weight: 500;
+  color: #093030;
+  text-transform: capitalize;
+  margin-bottom: 5px;
+  display: inline-block;
+}
+
+/* Button Style */
+.save-button-wrapper {
+  width: 169px;
+  height: 36px;
+  background: #00D09E;
+  border: none;
+  border-radius: 30px;
+  cursor: pointer;
+  margin-top: 20px;
+  margin: auto;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.save-button-text {
+  color: #093030;
+  font-family: 'Poppins', sans-serif;
+  font-size: 15px;
+  font-weight: 500;
+  text-transform: capitalize;
+}
+
+/* Error Message */
+.error-message {
+  color: red;
+  font-size: 14px;
+  margin-top: 5px;
+}
+
+/* Button */
+.button-wrapper {
+  text-align: center;
+}
+
+.save-button {
+  width: 170px;
+  height: 36px;
+  background-color: #00D09E;
+  border: none;
+  border-radius: 30px;
+  color: #093030;
+  font-size: 15px;
+  font-weight: 500;
+  cursor: pointer;
+  text-transform: capitalize;
+  transition: background-color 0.3s ease;
+}
+
+.save-button:hover {
+  background-color: #00ba8e;
+}
+
+.textarea-box {
+  min-height: 100px;
+  resize: vertical;
+}

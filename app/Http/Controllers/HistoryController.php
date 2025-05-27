@@ -7,7 +7,7 @@ use App\Models\Income;
 use App\Models\Expense;
 use Illuminate\Support\Carbon;
 
-class DashboardController extends Controller
+class HistoryController extends Controller
 {
     public function index()
     {
@@ -48,8 +48,8 @@ class DashboardController extends Controller
             return Carbon::parse($item['date'])->format('F');
         });
 
-        // Kirim ke view
-        return view('dashboard.index',compact(
+        // Kirim semua data ke view
+        return view('pages.history', compact(
             'totalIncome',
             'totalExpense',
             'totalBalance',

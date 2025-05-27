@@ -11,14 +11,26 @@ return new class extends Migration
      */
     public function up(): void
 {
-    Schema::create('expense', function (Blueprint $table) {
-        $table->id('expense_id');
+    // Schema::create('expenses', function (Blueprint $table) {
+    //     $table->id('expense_id');
+    //     $table->date('date');
+    //     $table->string('category', 50);
+    //     $table->decimal('amount', 15, 2);
+    //     $table->text('description');
+    //     $table->timestamps(); // optional
+    // });
+    Schema::create('expenses', function (Blueprint $table) {
+        $table->id(); // ini buat kolom id auto increment primary key
+        $table->unsignedBigInteger('user_id');
         $table->date('date');
-        $table->string('category', 50);
+        $table->string('category');
         $table->decimal('amount', 15, 2);
-        $table->text('description');
-        $table->timestamps(); // optional
-    });
+        $table->string('title');
+        $table->timestamps();
+    
+        $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+    });    
+    
 }
 
     /**
@@ -26,6 +38,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('expense');
+        Schema::dropIfExists('expenses');
     }
 };

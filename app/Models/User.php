@@ -24,7 +24,6 @@ class User extends Authenticatable
         'dob',
         'password',
     ];
-    
 
     /**
      * The attributes that should be hidden for serialization.
@@ -47,5 +46,13 @@ class User extends Authenticatable
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
+    }
+
+    /**
+     * Relasi ke model Account (One to One)
+     */
+    public function account()
+    {
+        return $this->hasOne(Account::class);
     }
 }

@@ -6,6 +6,7 @@
   <title>@yield('title', 'My App')</title>
   {{-- <link rel="stylesheet" href="{{ asset('assets/css/app.css') }}"> --}}
   @vite(['resources/sass/style.scss', 'resources/js/app.js'])
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
   {{-- Konten utama --}}

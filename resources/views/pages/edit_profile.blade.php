@@ -2,12 +2,12 @@
 @section('title', 'Profil')
 @section('content')
     <header style="background-color: #052224; padding-bottom: 120px">
-        <button aria-label="Back">
-            <svg width="21" height="18" viewBox="0 0 21 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <a href="{{ url('/profile') }}">
+            <button aria-label="Back"><svg width="21" height="18" viewBox="0 0 21 18" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M11.5642 1L0.999999 8.99685M0.999999 8.99685L11.5642 17M0.999999 8.99685L20 8.99686"
                     stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-            </svg>
-        </button>
+            </svg></button>
+        </a>
         <h2 style="color: #ffffff;">Profile</h2>
         <a href="{{ route('notification') }}" class="{{ request()->routeIs('notification') ? 'choose' : '' }}"
             aria-label="Notifications">
@@ -28,55 +28,25 @@
             <h1>{{ Auth::user()->name ?? 'User' }}</h1>
             <p class="IDuser">ID : 202500{{ Auth::user()->id }}</p>
             <div class="edit-profile">
-                <div class="containerpr">
-                    <a href="{{ route('profile.edit') }}" class="menu-button" style="text-decoration: none;">
-                        <div class="icon-wrapper edit-icon">
-                            <div class="icon-bg"></div>
-                            <div class="icon-shape shape-edit">
-                                <svg width="26" height="32" viewBox="0 0 26 32"
-                                fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path
-                                    d="M2.78532 21.0913C2.23556 22.4838 1.9695 23.972 2.00278 25.4687C2.00278 31.6749 24.4659 31.6749 24.477 25.4687C24.5102 23.972 24.2443 22.4838 23.6945 21.0913C23.1447 19.6988 22.3223 18.4302 21.2755 17.3599C20.2288 16.2896 18.9788 15.4392 17.5988 14.8586C16.2189 14.278 14.7369 13.979 13.2399 13.979C11.7428 13.979 10.2608 14.278 8.8809 14.8586C7.50099 15.4392 6.25098 16.2896 5.20422 17.3599C4.15746 18.4302 3.33508 19.6988 2.78532 21.0913Z"
-                                    stroke="#052224" stroke-width="2.22242" stroke-linecap="round"
-                                    stroke-linejoin="round" />
-                                <path
-                                    d="M13.2316 11.023C15.7232 11.023 17.7431 9.00315 17.7431 6.51151C17.7431 4.01987 15.7232 2 13.2316 2C10.7399 2 8.72004 4.01987 8.72004 6.51151C8.72004 9.00315 10.7399 11.023 13.2316 11.023Z"
-                                    stroke="#052224" stroke-width="2.22242" stroke-linecap="round"
-                                    stroke-linejoin="round" />
-                            </svg>                            </div>
-                        </div>
-                        <span class="label">Edit Profile</span>
-                    </a>
-                    
+                <div class="containerep">
 
-                    <button class="menu-button" onclick="openPopup()">
-                        <div class="icon-wrapper logout-icon">
-                            <div class="icon-bg"></div>
-                            <div class="icon-shape shape-logout"><svg width="22" height="31" viewBox="0 0 22 31"
-                                    fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path
-                                        d="M15.788 20.5286L19.733 16.2746C19.9056 16.0641 20 15.8004 20 15.5283C20 15.2561 19.9056 14.9924 19.733 14.782L15.788 10.5279M19.9895 15.5118H8.33187M15.9065 26.3937V26.5514C15.9065 27.1967 15.6501 27.8155 15.1939 28.2717C14.7376 28.7279 14.1187 28.9842 13.4735 28.9842H4.43276C3.78754 28.9842 3.16881 28.7279 2.71257 28.2717C2.25633 27.8155 2 27.1967 2 26.5514V4.43278C2 3.78756 2.25633 3.16879 2.71257 2.71255C3.16881 2.25631 3.78754 2 4.43276 2H13.4735C14.1187 2 14.7376 2.25631 15.1939 2.71255C15.6501 3.16879 15.9065 3.78756 15.9065 4.43278V4.51826"
-                                        stroke="#052224" stroke-width="2.63004" stroke-linecap="round"
-                                        stroke-linejoin="round" />
-                                </svg>
-                            </div>
-                        </div>
-                        <span class="label">Logout</span>
-                    </button>
-                    <!-- Popup -->
-                    <div class="popup-overlay" id="logoutPopup">
-                        <div class="logout-dialog">
-                            <div class="dialog-box"></div>
-                            <div class="dialog-title">end session</div>
-                            <div class="dialog-message">Are you sure you want to log out?</div>
-                            <button class="btn-confirm" onclick="confirmLogout()">yes, end session</button>
-                            <button class="btn-cancel" onclick="closePopup()">cancel</button>
-                        </div>
-                    </div>
-
-                    <!-- Hidden logout form -->
-                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                    <form action="{{ route('profile.update') }}" method="POST" class="profile-form">
                         @csrf
+                        @method('PUT')
+
+                        <div class="form-group">
+                            <label for="username" class="form-label">Username</label>
+                            <input type="text" name="username" id="username" value="{{ old('username', $user->name) }}"
+                                class="form-input">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="phone" class="form-label">Phone</label>
+                            <input type="text" name="phone" id="phone" value="{{ old('phone', $user->phone) }}"
+                                class="form-input">
+                        </div>
+
+                        <button type="submit" class="update-button">Update Profile</button>
                     </form>
 
                 </div>

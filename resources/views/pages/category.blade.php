@@ -16,31 +16,28 @@
   <div class="content-scroll">
     <section class="flex-between" style="margin-bottom: 40px;">
       <div style="text-align: center; margin-bottom: 30px;">
-        {{-- <div><img src="gambar/income yellow.png" alt="Income" height="25" width="25"></div> --}}
-        <svg width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <div><span style="margin-bottom: 0"><svg width="13" height="13" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
           <rect x="1.04167" y="23.9583" width="22.9167" height="22.9167" rx="5.20833" transform="rotate(-90 1.04167 23.9583)" stroke="#000000" stroke-width="2.08333"/>
           <path d="M19.7917 6.25C19.7917 5.6747 19.3253 5.20833 18.75 5.20833L9.375 5.20833C8.7997 5.20833 8.33333 5.6747 8.33333 6.25C8.33333 6.8253 8.7997 7.29167 9.375 7.29167L17.7083 7.29167L17.7083 15.625C17.7083 16.2003 18.1747 16.6667 18.75 16.6667C19.3253 16.6667 19.7917 16.2003 19.7917 15.625L19.7917 6.25ZM6.25 18.75L6.98657 19.4866L19.4866 6.98657L18.75 6.25L18.0134 5.51343L5.51343 18.0134L6.25 18.75Z" fill="#000000"/>
-          </svg>                  
-        <div>Total Income</div>
-        <div><strong>$4,000.00</strong></div>
+          </svg></span> Total Income</div>
+        <div><strong>Rp. {{ number_format($totalIncome, 2) }}</strong></div>
       </div>
-      <div style="text-align: center; margin-bottom: 30px;">
-        {{-- <div><img src="gambar/expense yellow.png" alt="expense" height="25" width="25"></div> --}}
-        <svg width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+
+      <div style="text-align: center; margin-bottom: 30px;">                 
+        <div><span> <svg width="13" height="13" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
           <rect x="1.04167" y="1.04167" width="22.9167" height="22.9167" rx="5.20833" stroke="#000000" stroke-width="2.08333"/>
           <path d="M18.75 19.7917C19.3253 19.7917 19.7917 19.3253 19.7917 18.75L19.7917 9.375C19.7917 8.7997 19.3253 8.33333 18.75 8.33333C18.1747 8.33333 17.7083 8.7997 17.7083 9.375V17.7083H9.375C8.7997 17.7083 8.33333 18.1747 8.33333 18.75C8.33333 19.3253 8.7997 19.7917 9.375 19.7917L18.75 19.7917ZM6.25 6.25L5.51343 6.98657L18.0134 19.4866L18.75 18.75L19.4866 18.0134L6.98657 5.51343L6.25 6.25Z" fill="#000000"/>
-          </svg>                    
-        <div>Total Expense</div>
-        <div><strong>$1,187.40</strong></div>
+          </svg>  </span> Total Expense</div>
+        <div style="font-weight: 600; font-size=24px;">Rp. {{ number_format($totalExpense, 2) }}</div>
       </div>
     </section>
-
 
 
     <section class="category-yellowbox">
       <div style="margin-bottom: 10px; display: flex; justify-content: space-between; align-items: center;">
         <h3>Income</h3>
-        <button class="add-btn">Add</button>
+        {{-- <button class="add-btn">Add</button> --}}
+        <a href="{{ route('income.create') }}" class="add-income" style="text-decoration: none">Add</a>
       </div>
       <div class="category-grid">
         <button aria-label="savings">
@@ -53,9 +50,10 @@
         </button>
         <button aria-label="salary">
           <div class="category-box">
-            <svg class="icon">
-          <use xlink:href="{{ asset('assets/images/icon/sprite.svg') }}#Salary"></use>
-        </svg>
+            <svg width="56" height="50" viewBox="0 0 56 50" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M37.3858 23.9523L22.4196 33.3594C22.2813 33.4464 22.1062 33.4501 21.9643 33.3691L2.64257 22.3473C2.35176 22.1814 2.34291 21.7654 2.62641 21.5873L33.5805 2.14113C33.7188 2.05423 33.8937 2.05049 34.0356 2.13138L53.3572 13.1446C53.6481 13.3105 53.657 13.7266 53.3735 13.9048L44.0816 19.744M37.3947 31.3081L22.4195 40.7153C22.2812 40.8022 22.1063 40.8059 21.9644 40.7251L2.64244 29.7116C2.35164 29.5458 2.34259 29.1298 2.62591 28.9516L8.14082 25.4818M47.8592 17.3746L53.3569 20.509C53.6479 20.6749 53.6567 21.0912 53.3731 21.2692L44.001 27.1528M48.2173 24.5005L53.3868 27.6382C53.6684 27.8091 53.6716 28.2168 53.3926 28.3921L22.4196 47.8587C22.2813 47.9457 22.1062 47.9494 21.9643 47.8685L2.64257 36.8467C2.35176 36.6808 2.34291 36.2647 2.6264 36.0866L7.95283 32.7403M24.0458 8.40868L43.7774 19.6607C43.9157 19.7395 44.001 19.8865 44.001 20.0456V34.0428C44.001 34.1951 43.9228 34.3367 43.7939 34.4178L38.0737 38.0157C37.7787 38.2013 37.3947 37.9893 37.3947 37.6407V24.2096C37.3947 24.0505 37.3094 23.9037 37.1713 23.8248L17.8508 12.7988C17.5601 12.6329 17.5512 12.2171 17.8345 12.0389L23.5904 8.41852C23.7287 8.33149 23.9038 8.3277 24.0458 8.40868Z" stroke="#052224" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+                            
           </div>
           <div class="category-text">Salary</div>
         </button>
@@ -70,7 +68,8 @@
       </div>
       <div style="margin-bottom: 10px; display: flex; justify-content: space-between; align-items: center;">
         <h3>Expense</h3>
-        <button class="add-btn">Add</button>
+        {{-- <button class="add-btn">Add</button> --}}
+        <a href="{{ route('expense.create') }}" class="add-expense" style="text-decoration: none">Add</a>    
       </div>
       <div class="category-grid">
         <button aria-label="food">
